@@ -130,15 +130,15 @@ nu = seq(175,185,by=0.1)
 
 # compute p-value B times and store in p 
 p=numeric(length(nu))
-powers = numeric(length(nu))
+powers2 = numeric(length(nu))
 for (b in 1:length(nu)) {x=rnorm(m,mu,sd)
 y=rnorm(n,nu[b],sd)
 p[b]=t.test(x,y,var.equal=TRUE)[[3]]
-powers[b]=mean(p<0.05)
+powers2[b]=mean(p<0.05)
 }
 
 # plot the powers as a function of nu
-plot(nu, powers)
+points(nu, powers2)
 
 # 3.3
 
@@ -151,12 +151,13 @@ nu = seq(175,185,by=0.1)
 
 # compute p-value B times and store in p 
 p=numeric(length(nu))
-powers = numeric(length(nu))
+powers3 = numeric(length(nu))
 for (b in 1:length(nu)) {x=rnorm(m,mu,sd)
 y=rnorm(n,nu[b],sd)
 p[b]=t.test(x,y,var.equal=TRUE)[[3]]
-powers[b]=mean(p<0.05)
+powers3[b]=mean(p<0.05)
 }
 
 # plot the powers as a function of nu
-plot(nu, powers)
+points(nu, powers3)
+

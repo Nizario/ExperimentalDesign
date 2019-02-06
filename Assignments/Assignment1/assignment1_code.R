@@ -97,25 +97,66 @@ hist(p, prob=TRUE)
 
 
 # Exercise 3
-# WIP
+
+# 3.1
 
 # set parameters
-mu = nu = 180
+mu = 180
 m = n = 30
-sd = 10
+sd = 5
+
+nu = seq(175,185,by=0.1)
 
 # compute p-value B times and store in p 
-B=1000
-p=numeric(B)
-for (b in 1:B) {x=rnorm(m,mu,sd)
-y=rnorm(n,nu,sd)
-p[b]=t.test(x,y,var.equal=TRUE)[[3]]}
+p=numeric(length(nu))
+powers = numeric(length(nu))
+for (b in 1:length(nu)) {x=rnorm(m,mu,sd)
+y=rnorm(n,nu[b],sd)
+p[b]=t.test(x,y,var.equal=TRUE)[[3]]
+powers[b]=mean(p<0.05)
+}
 
-# compute the power of the test
-power=mean(p<0.05)
+# plot the powers as a function of nu
+plot(nu, powers)
 
-# plot power as a function of nu
-plot(nu, power)
+# 3.2
 
+# set parameters
+mu = 180
+m = n = 100
+sd = 5
 
+nu = seq(175,185,by=0.1)
 
+# compute p-value B times and store in p 
+p=numeric(length(nu))
+powers = numeric(length(nu))
+for (b in 1:length(nu)) {x=rnorm(m,mu,sd)
+y=rnorm(n,nu[b],sd)
+p[b]=t.test(x,y,var.equal=TRUE)[[3]]
+powers[b]=mean(p<0.05)
+}
+
+# plot the powers as a function of nu
+plot(nu, powers)
+
+# 3.3
+
+# set parameters
+mu = 180
+m = n = 30
+sd = 100
+
+nu = seq(175,185,by=0.1)
+
+# compute p-value B times and store in p 
+p=numeric(length(nu))
+powers = numeric(length(nu))
+for (b in 1:length(nu)) {x=rnorm(m,mu,sd)
+y=rnorm(n,nu[b],sd)
+p[b]=t.test(x,y,var.equal=TRUE)[[3]]
+powers[b]=mean(p<0.05)
+}
+
+# plot the powers as a function of nu
+plot(nu, powers)
